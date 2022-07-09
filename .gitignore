@@ -1,0 +1,13 @@
+.env
+apimicarta/public/upload/**
+apimicarta/public/static/**
+apimicarta/public/favicon.ico
+apimicarta/public/index.html
+apimicarta/public/asset-manifest.json
+apimicarta/public/manifest.json
+apimicarta/public/mi-carta-fav.png
+apimicarta/public/robots.txt
+apimicarta/resources/views/app.php
+plantilla-control-de-inventarios-en-la-cocina-winterhalter.xlsx
+.vscode/configurationCache.log
+.vscode/settings.json
