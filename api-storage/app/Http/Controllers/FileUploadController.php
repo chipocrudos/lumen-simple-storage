@@ -3,8 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-// use Symphony\Component\HttpFundation\File\UploadedFile;
-use Carbon\Carbon;
+use Illuminate\Support\Str;
 use App\Models\FileUpload;
 
 
@@ -41,8 +40,11 @@ class FileUploadController extends Controller
         if($request->hasFile('upload')) {
 
             $fileName = $request->file('upload')->getClientOriginalName();
+            $fileExt = $request->file('upload')->getClientOriginalExtension();
 
-            $upload = Carbon::now()->timestamp . '_' . $fileName;
+            $idFile = Str::uuid()->toString();
+
+            $upload = $idFile . '.' . $fileExt;
 
             $folderUpload = '/upload/';
 
@@ -69,7 +71,7 @@ class FileUploadController extends Controller
 
     }
 
-    
+
     public function delete($id)
     {
         $fileupload = FileUpload::findOrFail($id);

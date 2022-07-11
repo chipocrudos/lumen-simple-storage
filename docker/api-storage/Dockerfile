@@ -15,5 +15,6 @@ RUN docker-php-ext-install pdo_mysql zip
 RUN php -r "readfile('http://getcomposer.org/installer');" | php -- --install-dir=/usr/bin/ --filename=composer
 
 COPY ./api-storage/. .
-
 RUN composer install
+
+VOLUME "/var/www/html/public/upload"

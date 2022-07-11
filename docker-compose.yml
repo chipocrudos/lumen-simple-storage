@@ -12,9 +12,8 @@ services:
       - "80:80"
     volumes:
       # - ./api-storage:/var/www/html
-      - ./upload:/var/www/html/public/upload
+      # - ./upload:/var/www/html/public/upload
       - ./storage.sqlite:$DB_DATABASE
-      # - ./docker/api-storage/upload.ini:/usr/local/etc/php/conf.d/upload.ini
     env_file:
       - .env
     command: php -S 0.0.0.0:9000 -t public
