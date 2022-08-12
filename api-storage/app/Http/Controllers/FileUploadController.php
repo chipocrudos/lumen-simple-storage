@@ -9,7 +9,10 @@ use App\Models\FileUpload;
 
 class FileUploadController extends Controller
 {
-
+    public function __construct()
+    {
+        $this->middleware('auth:api', []);
+    }
     
     public function showAll(Request $request)
     {
