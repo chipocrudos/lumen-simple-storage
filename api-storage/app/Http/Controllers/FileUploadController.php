@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use App\Models\FileUpload;
+use App\Http\Resources\FileUploadResource;
 
 
 class FileUploadController extends Controller
@@ -23,12 +24,12 @@ class FileUploadController extends Controller
             $fileupload = $fileupload->where('related_id', '=', $request->get('related_id'));
         }
         
-        return response()->json($fileupload);
+        return FileUploadResource::collection($fileupload);
     }
 
     public function showOne($id)
     {
-        return response()->json(FileUpload::find($id));
+        return new FileUploadResource(FileUpload::find($id));
     }
 
 
@@ -67,7 +68,7 @@ class FileUploadController extends Controller
 
             $fileupload->save();
             
-            return response()->json($fileupload, 201);
+            return new FileUploadResource($fileupload);
         } 
 
         return response()->json("Error file upload", 400);
