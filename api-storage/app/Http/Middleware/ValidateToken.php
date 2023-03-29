@@ -14,7 +14,11 @@ class ValidateToken extends Check
     {
 
         if ($this->auth->parser()->setRequest($request)->hasToken()) {
-            $this->auth->parseToken();
+            try {
+                $this->auth->parseToken()->getPayload();
+            } catch (\Throwable $th) {
+                throw new UnauthorizedHttpException('jwt-auth', 'Token not provided');
+            }
 
         } else {
             throw new UnauthorizedHttpException('jwt-auth', 'Token not provided');
