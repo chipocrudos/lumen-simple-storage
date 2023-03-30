@@ -29,7 +29,7 @@ class FileUploadController extends Controller
 
     public function showOne($id)
     {
-        return new FileUploadResource(FileUpload::find($id));
+        return new FileUploadResource(FileUpload::findOrFail($id));
     }
 
 
