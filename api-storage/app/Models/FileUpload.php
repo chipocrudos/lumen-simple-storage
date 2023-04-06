@@ -16,7 +16,7 @@ class FileUpload extends Model
      
         // Order by name ASC
         static::addGlobalScope('order', function (Builder $builder) {
-            $builder->orderBy('related_id', 'asc')->orderBy('name', 'asc');
+            $builder->orderBy('related_id', 'asc')->orderBy('id', 'asc')->orderBy('name', 'asc');
         });
     }
 

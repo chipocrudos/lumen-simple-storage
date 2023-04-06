@@ -18,13 +18,17 @@ class FileUploadController extends Controller
     public function showAll(Request $request)
     {
         
-        $fileupload = FileUpload::all();
+        if ($request->get('q', 0)) {
+            $fileupload = FileUpload::where('name', 'like', '%' . $request->get('q') . '%' )->get();
+        } else {
+            $fileupload = FileUpload::all();
+        }
 
         if ($request->get('related_id', 0)) {
             $fileupload = $fileupload->where('related_id', '=', $request->get('related_id'));
         }
         
-        return FileUploadResource::collection($fileupload);
+        return FileUploadResource::collection($fileupload->skip($request->get('offset', 0))->take($request->get('limit', 10)));
     }
 
     public function showOne($id)
